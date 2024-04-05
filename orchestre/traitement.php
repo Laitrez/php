@@ -64,11 +64,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // tableau des extension que l'on accepte
     $extensions = ['jpg', 'png', 'jpeg', 'gif'];
     // on gere egalement la taille du fichier 
-    $maxSize=40000;
+    $maxSize=4000000000;
     // on a ensuite un controle sur cette extension 
     if(in_array($extension,$extensions)&&$size<=$maxSize){
-        move_uploaded_file($tmpName,'/img/imgArtiste/'.$name);
-    }else{
+        var_dump($_FILES);
+        if ( is_uploaded_file( $_FILES["file"]["tmp_name"] ) && $_FILES["file"]["error"] === 0 ) {
+        move_uploaded_file($tmpName,'../img/imgArtiste/'.$name);
+    }}else{
         echo"mauvaise extension de fichier";
     }
     
